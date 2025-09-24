@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVOIR: O Jogo do Francês</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-background: #0D0F16;
+            --card-bg: #1A1D2B;
+            --gradient-start: #4A1D9E;
+            --gradient-end: #1E1A53;
+            --accent-color: #B28CFF;
+            --text-color: #E2E8F0;
+            --title-font: 'Bruno Ace SC', sans-serif;
+            --body-font: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-background);
+            color: var(--text-color);
+            font-family: var(--body-font);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .gradient-background {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            min-height: 100vh;
+        }
+
+        .gaming-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 2px solid transparent;
+        }
+
+        .gaming-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            border-color: var(--accent-color);
+        }
+
+        .gaming-button {
+            background: linear-gradient(90deg, #6b46c1 0%, #a561ef 100%);
+            border-radius: 9999px;
+            padding: 0.75rem 1.5rem;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .gaming-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+        }
+
+        .modal {
+            background: rgba(13, 15, 22, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--accent-color);
+        }
+    </style>
+</head>
+<body class="gradient-background">
+
+    <!-- Header (Netflix-like) -->
+    <header class="p-6 flex justify-between items-center z-10">
+        <div class="flex items-center space-x-4">
+            <svg class="w-10 h-10 text-accent-color" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2L2 22h20L12 2zm0 14.5L15.5 10H8.5L12 16.5z"/>
+            </svg>
+            <h1 class="text-3xl font-bold font-title uppercase tracking-widest text-white">AVOIR: O JOGO</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center border-2 border-accent-color cursor-pointer">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A11.052 11.052 0 0112 15c2.348 0 4.505.748 6.379 2.062M15 10a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl sm:text-5xl md:text-6xl font-title text-white leading-tight mb-4">Bem-vindo(a) à sua Jornada Francesa</h2>
+            <p class="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto">Explore as diferentes formas de usar o verbo mais comum do francês em situações do dia a dia. Escolha um "episódio" para começar.</p>
+        </div>
+
+        <!-- Episode Cards Section -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+            <!-- Card 1: Posse e Idade -->
+            <div class="gaming-card p-6 flex flex-col items-center text-center">
+                <img src="https://placehold.co/400x250/333/fff?text=Tesouros+e+Tempo" alt="Tesouros e Tempo" class="rounded-lg mb-4 w-full h-40 object-cover">
+                <h3 class="text-2xl font-bold font-title text-accent-color mb-2">Episódio 1: Posse e Idade</h3>
+                <p class="text-gray-400 flex-grow mb-4">Aprenda a dizer que você tem algo ou quantos anos você tem. Situações como "Eu tenho um livro" ou "Ele tem vinte anos".</p>
+                <button onclick="showLesson(1)" class="gaming-button">Começar</button>
+            </div>
+
+            <!-- Card 2: Sensações e Estados -->
+            <div class="gaming-card p-6 flex flex-col items-center text-center">
+                <img src="https://placehold.co/400x250/333/fff?text=Como+você+se+sente%3F" alt="Como você se sente?" class="rounded-lg mb-4 w-full h-40 object-cover">
+                <h3 class="text-2xl font-bold font-title text-accent-color mb-2">Episódio 2: Sensações e Estados</h3>
+                <p class="text-gray-400 flex-grow mb-4">Use 'avoir' para expressar sensações físicas e emocionais. Frases como "Eu estou com fome" ou "Ela está com medo".</p>
+                <button onclick="showLesson(2)" class="gaming-button">Começar</button>
+            </div>
+
+            <!-- Card 3: Expressões Fixas -->
+            <div class="gaming-card p-6 flex flex-col items-center text-center">
+                <img src="https://placehold.co/400x250/333/fff?text=Dominando+as+Frases" alt="Dominando as Frases" class="rounded-lg mb-4 w-full h-40 object-cover">
+                <h3 class="text-2xl font-bold font-title text-accent-color mb-2">Episódio 3: Expressões</h3>
+                <p class="text-gray-400 flex-grow mb-4">Aprenda a usar 'avoir' em expressões fixas comuns. Como em "Eu preciso de ajuda" ou "Eles têm sorte".</p>
+                <button onclick="showLesson(3)" class="gaming-button">Começar</button>
+            </div>
+
+            <!-- Card 4: Passado Composto -->
+            <div class="gaming-card p-6 flex flex-col items-center text-center">
+                <img src="https://placehold.co/400x250/333/fff?text=Passado+e+Aventura" alt="Passado e Aventura" class="rounded-lg mb-4 w-full h-40 object-cover">
+                <h3 class="text-2xl font-bold font-title text-accent-color mb-2">Episódio 4: Passé Composé</h3>
+                <p class="text-gray-400 flex-grow mb-4">Explore o uso do 'avoir' como verbo auxiliar para a maioria dos verbos no passado composto.</p>
+                <button onclick="showLesson(4)" class="gaming-button">Começar</button>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Modal for Lesson -->
+    <div id="lesson-modal" class="modal fixed inset-0 flex items-center justify-center p-4 hidden z-20">
+        <div class="modal-content w-full max-w-2xl p-8 text-center relative">
+            <button onclick="hideLesson()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div id="lesson-content">
+                <!-- Content will be injected here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const lessons = {
+            1: {
+                title: "Episódio 1: Posse e Idade",
+                scenarios: [
+                    { type: "fill-in-the-blank", question: "Você está mostrando um novo livro a um amigo. Complete a frase para dizer 'Eu tenho um novo livro':", hint: "Conjugue o verbo para 'eu'.", correctAnswer: "ai", fullSentence: "J'___ un nouveau livre.", translation: "Eu tenho um novo livro." },
+                    { type: "fill-in-the-blank", question: "Você está descrevendo seu amigo para um colega. Complete a frase para dizer 'Ele tem um cachorro grande':", hint: "Conjugue o verbo para 'ele'.", correctAnswer: "a", fullSentence: "Il ___ un grand chien.", translation: "Ele tem um cachorro grande." },
+                    { type: "fill-in-the-blank", question: "Você precisa de um artigo para um objeto singular. Complete a frase: 'Eu tenho ___ bicicleta.'", hint: "O substantivo 'vélo' é masculino.", correctAnswer: "un", fullSentence: "J'ai ___ vélo.", translation: "Eu tenho uma bicicleta." },
+                    { type: "fill-in-the-blank", question: "Você está falando de seus amigos. Complete a frase: 'Eles têm ___ amigos.'", hint: "O substantivo 'amis' é plural.", correctAnswer: "des", fullSentence: "Ils ont ___ amis.", translation: "Eles têm amigos." },
+                    { type: "full-sentence", question: "Traduza: 'Nós temos um carro.'", hint: "A conjugação para 'nós' é 'avons'.", correctAnswer: "Nous avons une voiture.", translation: "Nós temos um carro." },
+                    { type: "full-sentence", question: "Traduza: 'Você tem uma boa ideia.'", hint: "A conjugação para 'você' é 'as'.", correctAnswer: "Tu as une bonne idée.", translation: "Você tem uma boa ideia." },
+                    { type: "full-sentence", question: "Traduza: 'Ela tem uma bolsa.'", hint: "A conjugação para 'ela' é 'a'.", correctAnswer: "Elle a un sac.", translation: "Ela tem uma bolsa." },
+                ]
+            },
+            2: {
+                title: "Episódio 2: Sensações e Estados",
+                scenarios: [
+                    { type: "fill-in-the-blank", question: "Você está com o estômago roncando. Complete a frase para dizer 'Eu estou com fome':", hint: "Conjugue o verbo para 'eu'.", correctAnswer: "ai", fullSentence: "J'___ faim.", translation: "Eu estou com fome." },
+                    { type: "fill-in-the-blank", question: "Um amigo está tremendo de frio. Complete a frase para dizer 'Ele está com frio':", hint: "Conjugue o verbo para 'ele'.", correctAnswer: "a", fullSentence: "Il ___ froid.", translation: "Ele está com frio." },
+                    { type: "fill-in-the-blank", question: "Você está com sede. Complete a frase para dizer 'Nós estamos com sede':", hint: "Conjugue o verbo para 'nós'.", correctAnswer: "avons", fullSentence: "Nous ___ soif.", translation: "Nós estamos com sede." },
+                    { type: "fill-in-the-blank", question: "Você está descrevendo o sentimento de sua irmã. Complete a frase para dizer 'Ela tem medo':", hint: "Conjugue o verbo para 'ela'.", correctAnswer: "a", fullSentence: "Elle ___ peur.", translation: "Ela tem medo." },
+                    { type: "full-sentence", question: "Traduza: 'Você tem sorte.'", hint: "A expressão é 'avoir de la chance'.", correctAnswer: "Tu as de la chance.", translation: "Você tem sorte." },
+                    { type: "full-sentence", question: "Traduza: 'Eles estão com razão.'", hint: "A expressão é 'avoir raison'.", correctAnswer: "Ils ont raison.", translation: "Eles estão com razão." },
+                    { type: "full-sentence", question: "Traduza: 'Ela tem uma boa memória.'", hint: "A conjugação para 'ela' é 'a'.", correctAnswer: "Elle a une bonne mémoire.", translation: "Ela tem uma boa memória." }
+                ]
+            },
+            3: {
+                title: "Episódio 3: Expressões",
+                scenarios: [
+                    { type: "fill-in-the-blank", question: "Você quer dizer que precisa de algo. Complete a frase para dizer 'Eu preciso de um mapa':", hint: "A forma do verbo para 'eu' é 'ai'.", correctAnswer: "ai", fullSentence: "J'___ besoin d'un plan.", translation: "Eu preciso de um mapa." },
+                    { type: "fill-in-the-blank", question: "Seu amigo está com vontade de ir ao cinema. Complete a frase para dizer 'Ele tem vontade de ir ao cinema':", hint: "A forma do verbo para 'ele' é 'a'.", correctAnswer: "a", fullSentence: "Il ___ envie d'aller au cinéma.", translation: "Ele tem vontade de ir ao cinema." },
+                    { type: "fill-in-the-blank", question: "Você e seus amigos estão conversando sobre um evento. Complete a frase para dizer 'Nós temos a oportunidade de viajar':", hint: "A forma do verbo para 'nós' é 'avons'.", correctAnswer: "avons", fullSentence: "Nous ___ l'occasion de voyager.", translation: "Nós temos a oportunidade de viajar." },
+                    { type: "fill-in-the-blank", question: "Você está falando de um hábito de sua irmã. Complete a frase para dizer 'Ela tem o hábito de ler':", hint: "A forma do verbo para 'ela' é 'a'.", correctAnswer: "a", fullSentence: "Elle ___ l'habitude de lire.", translation: "Ela tem o hábito de ler." },
+                    { type: "fill-in-the-blank", question: "Seus pais estão com sorte hoje. Complete a frase para dizer 'Eles têm sorte':", hint: "A forma para 'eles' é 'ont'.", correctAnswer: "ont", fullSentence: "Ils ___ de la chance.", translation: "Eles têm sorte." },
+                    { type: "full-sentence", question: "Traduza: 'Eu estou com vergonha.'", hint: "A conjugação para 'eu' é 'ai'.", correctAnswer: "J'ai honte.", translation: "Eu estou com vergonha." },
+                    { type: "full-sentence", question: "Traduza: 'Nós temos que partir.'", hint: "A conjugação para 'nós' é 'avons'.", correctAnswer: "Nous avons à partir.", translation: "Nós temos que partir." },
+                    { type: "full-sentence", question: "Traduza: 'Eles têm medo de aranhas.'", hint: "A conjugação para 'eles' é 'ont'.", correctAnswer: "Ils ont peur des araignées.", translation: "Eles têm medo de aranhas." },
+                    { type: "full-sentence", question: "Traduza: 'Você precisa de ajuda?'", hint: "A conjugação para 'você' é 'as'.", correctAnswer: "Tu as besoin d'aide ?", translation: "Você precisa de ajuda?" },
+                    { type: "full-sentence", question: "Traduza: 'Ela tem uma boa memória.'", hint: "A conjugação para 'ela' é 'a'.", correctAnswer: "Elle a une bonne mémoire.", translation: "Ela tem uma boa memória." }
+                ]
+            },
+            4: {
+                title: "Episódio 4: Passé Composé",
+                scenarios: [
+                    { type: "fill-in-the-blank", question: "Você está contando o que comeu. Complete a frase para dizer 'Eu comi uma maçã':", hint: "A forma do verbo auxiliar para 'eu' é 'ai'.", correctAnswer: "ai", fullSentence: "J'___ mangé une pomme.", translation: "Eu comi uma maçã." },
+                    { type: "fill-in-the-blank", question: "Você pergunta se um amigo viu um filme. Complete a frase para dizer 'Você viu o filme':", hint: "A forma do verbo auxiliar para 'você' é 'as'.", correctAnswer: "as", fullSentence: "Tu ___ vu le film ?", translation: "Você viu o filme?" },
+                    { type: "fill-in-the-blank", question: "Você está falando de uma viagem que ela fez. Complete a frase para dizer 'Ela visitou Paris':", hint: "A forma do verbo auxiliar para 'ela' é 'a'.", correctAnswer: "a", fullSentence: "Elle ___ visité Paris.", translation: "Ela visitou Paris." },
+                    { type: "fill-in-the-blank", question: "Você e seus amigos estão falando de um livro que leram. Complete a frase para dizer 'Nós lemos o livro':", hint: "A forma do verbo auxiliar para 'nós' é 'avons'.", correctAnswer: "avons", fullSentence: "Nous ___ lu le livre.", translation: "Nós lemos o livro." },
+                    { type: "fill-in-the-blank", question: "Você está perguntando se eles compraram um carro. Complete a frase para dizer 'Eles compraram um carro':", hint: "A forma do verbo auxiliar para 'eles' é 'ont'.", correctAnswer: "ont", fullSentence: "Ils ___ acheté une voiture.", translation: "Eles compraram um carro." },
+                    { type: "full-sentence", question: "Traduza: 'Eu bebi um café.'", hint: "A frase começa com 'J'ai'.", correctAnswer: "J'ai bu un café.", translation: "Eu bebi um café." },
+                    { type: "full-sentence", question: "Traduza: 'Nós falamos com ele.'", hint: "A frase começa com 'Nous avons'.", correctAnswer: "Nous avons parlé avec lui.", translation: "Nós falamos com ele." },
+                    { type: "full-sentence", question: "Traduza: 'Ela perdeu o voo.'", hint: "A frase começa com 'Elle a'.", correctAnswer: "Elle a raté son vol.", translation: "Ela perdeu o voo." },
+                    { type: "full-sentence", question: "Traduza: 'Eles terminaram o trabalho.'", hint: "A frase começa com 'Ils ont'.", correctAnswer: "Ils ont terminé le travail.", translation: "Eles terminaram o trabalho." },
+                    { type: "full-sentence", question: "Traduza: 'Vocês escreveram a carta?'", hint: "A conjugação para 'vocês' é 'avez'.", correctAnswer: "Vous avez écrit la lettre ?", translation: "Vocês escreveram a carta?" }
+                ]
+            }
+        };
+
+        let currentLessonId = null;
+        let currentScenarioIndex = 0;
+
+        function showLesson(lessonId) {
+            currentLessonId = lessonId;
+            currentScenarioIndex = 0;
+            document.getElementById('lesson-modal').classList.remove('hidden');
+            renderScenario();
+        }
+
+        function hideLesson() {
+            document.getElementById('lesson-modal').classList.add('hidden');
+        }
+
+        function renderScenario() {
+            const lesson = lessons[currentLessonId];
+            if (!lesson) return;
+
+            const scenario = lesson.scenarios[currentScenarioIndex];
+            if (!scenario) {
+                // End of lesson
+                document.getElementById('lesson-content').innerHTML = `
+                    <h2 class="text-4xl font-bold font-title text-accent-color mb-4">Parabéns!</h2>
+                    <p class="text-lg text-gray-300 mb-6">Você completou todas as atividades do episódio "${lesson.title}".</p>
+                    <button onclick="hideLesson()" class="gaming-button">Voltar para o Menu</button>
+                `;
+                return;
+            }
+
+            let questionHtml = '';
+            let sentenceToDisplay = '';
+            
+            if (scenario.type === 'fill-in-the-blank') {
+                const parts = scenario.fullSentence.split('___');
+                sentenceToDisplay = `<p class="text-2xl text-white font-semibold">${parts[0].trim()} <span class="text-accent-color italic">___</span> ${parts[1].trim()}</p>`;
+                questionHtml = `<p class="text-xl mb-4 text-gray-300">${scenario.question}</p>`;
+            } else { // full-sentence
+                sentenceToDisplay = `<p class="text-2xl text-white font-semibold">${scenario.question}</p>`;
+                questionHtml = `<p class="text-xl mb-4 text-gray-300">Traduza para o francês:</p>`;
+            }
+
+            const html = `
+                <h2 class="text-4xl font-bold font-title text-accent-color mb-4">${lesson.title}</h2>
+                <div class="bg-gray-800 p-6 rounded-lg text-left mb-6">
+                    ${questionHtml}
+                    ${sentenceToDisplay}
+                </div>
+                <div class="flex flex-col items-center space-y-4">
+                    <input type="text" id="answer-input" class="w-full max-w-xs p-3 text-center bg-gray-700 text-white rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-accent-color" placeholder="Sua resposta aqui...">
+                    <button id="check-btn" onclick="checkAnswer()" class="gaming-button">Verificar</button>
+                </div>
+                <div id="feedback-message" class="mt-4 text-center"></div>
+                <button id="next-btn" onclick="nextScenario()" class="gaming-button mt-6 hidden">Próximo</button>
+            `;
+            document.getElementById('lesson-content').innerHTML = html;
+            document.getElementById('answer-input').focus();
+        }
+
+        function normalizeText(text) {
+            return text.toLowerCase().trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").replace(/\s{2,}/g, " ");
+        }
+
+        function checkAnswer() {
+            const input = document.getElementById('answer-input');
+            const feedback = document.getElementById('feedback-message');
+            const nextBtn = document.getElementById('next-btn');
+            const checkBtn = document.getElementById('check-btn');
+            const lesson = lessons[currentLessonId];
+            const scenario = lesson.scenarios[currentScenarioIndex];
+
+            if (!input.value.trim()) {
+                feedback.innerHTML = `<p class="text-red-500 font-bold text-xl">Por favor, digite sua resposta.</p>`;
+                return;
+            }
+
+            let isCorrect = normalizeText(input.value) === normalizeText(scenario.correctAnswer);
+
+            if (isCorrect) {
+                feedback.innerHTML = `<p class="text-green-500 font-bold text-xl">Correto!</p>
+                                      <p class="text-gray-400 mt-2">Resposta correta: <span class="text-white bg-green-700 rounded-lg p-1.5">${scenario.correctAnswer}</span></p>
+                                      <p class="text-gray-400 mt-2">Tradução: ${scenario.translation}</p>`;
+                nextBtn.classList.remove('hidden');
+                checkBtn.classList.add('hidden');
+            } else {
+                feedback.innerHTML = `<p class="text-red-500 font-bold text-xl">Ops, tente novamente.</p>
+                                      <p class="text-gray-400 mt-2">Dica: ${scenario.hint}</p>`;
+            }
+        }
+
+        function nextScenario() {
+            currentScenarioIndex++;
+            renderScenario();
+        }
+    </script>
+</body>
+</html>
